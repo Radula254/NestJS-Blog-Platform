@@ -1,0 +1,3 @@
+GET http://localhost:3000/users
+
+GET http://localhost:3000/users/1234567/?limit=1&page=20
