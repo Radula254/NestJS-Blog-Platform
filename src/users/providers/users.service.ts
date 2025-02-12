@@ -1,43 +1,46 @@
+// providers/users.service.ts
+
 import { forwardRef, Inject, Injectable } from '@nestjs/common';
-import { GetUsersParamDto } from '../dtos/get-users-param.dto';
 import { AuthService } from 'src/auth/providers/auth.service';
 
 @Injectable()
 export class UsersService {
-
   constructor(
-    //Injecting Auth Service
     @Inject(forwardRef(() => AuthService))
     private readonly authService: AuthService,
-  ){}
-  public findAll(
-    getUserParamDto: GetUsersParamDto,
-    limit: number,
-    page: number,
-  ) {
+  ) {}
+
+  /**
+   * Find all users (with pagination or other filters as needed)
+   */
+  public findAll(limit: number, page: number) {
     const isAuth = this.authService.isAuth();
-    console.log(isAuth)
-    
+    console.log('Is Authenticated?', isAuth);
+
+    // Hard-coded demo data
     return [
       {
         firstName: 'John',
-        email: 'john@doe,com',
+        email: 'john@doe.com',
       },
       {
         firstName: 'Alice',
-        email: 'alice@doe,com',
+        email: 'alice@doe.com',
       },
     ];
   }
 
-  /*
-   * Find User by Id
+  /**
+   * Find user(s) by ID
    */
   public findOneById(id: string) {
-    return {
-      id: 1234,
-      firstName: 'Alice',
-      email: 'alice@doe,com',
-    };
+    // Hard-coded demo data returning a single user in an array
+    return [
+      {
+        id,
+        firstName: 'Alice',
+        email: 'alice@doe.com',
+      },
+    ];
   }
 }
