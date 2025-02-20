@@ -3,6 +3,9 @@
 import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { AuthService } from 'src/auth/providers/auth.service';
 
+/**
+ * Class to connect to users table and perform business operations
+ */
 @Injectable()
 export class UsersService {
   constructor(
